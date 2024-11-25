@@ -9,10 +9,13 @@ import ModuleRoutes from "./Kanbas/Modules/routes.js";
 
 import "dotenv/config";
 import session from "express-session";
+import AssignmentRoutes from './Kanbas/Assignments/routes.js';
+import EnrollmentsRoutes from './Kanbas/Enrollments/route.js';
 
 
 
 const app = express();
+
 
 app.use(
   cors({
@@ -51,6 +54,8 @@ Hello(app)
 UserRoutes(app);
 CourseRoutes(app);
 ModuleRoutes(app);
+AssignmentRoutes(app);
+EnrollmentsRoutes(app);
 
 
 
