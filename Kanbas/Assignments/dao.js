@@ -1,26 +1,29 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
+
 
 export function findAssignmentsForCourse(courseId) {
-  const { assignments } = Database;
-  return assignments.filter(assignment => assignment.course === courseId);
+
+  // console.log(model.findOne({number : "A101"}));
+  return model.find({course : courseId});
+}
+
+
+
+export function findAssignmentById (assignmentId){
+  console.log("START find assignment by id", assignmentId)
+   const assignment = model.findOne({number: assignmentId});
+  console.log("found assignment by id", assignment)
+  return assignment;
 }
 
 export function createAssignment(assignment) {
-  const newAssignment = { ...assignment, _id:Date.now().toString() };
-  Database.assignments = [...Database.assignments, newAssignment];
-  return newAssignment;
+  delete assignment._id
+  return model.create(assignment); 
 }
 
-export function deleteAssignment(assignmentId) {
-  const { assignments } = Database;
-  Database.assignments = assignments.filter(
-    (assignment) => assignment._id !== assignmentId);
-}
+export const deleteAssignment = (assignmentId) => model.deleteOne({ number: assignmentId });
+
 
 export function updateAssignment(assignmentId, assignmentUpdates) {
-  const { assignments } = Database;
-  const assignment = assignments.find((assignment) => assignment._id === assignmentId);
-  console.log(assignment);
-  Object.assign(assignment, assignmentUpdates);
-  return assignment;
+  return model.updateOne({ number : assignmentId }, { $set: assignmentUpdates })
 }

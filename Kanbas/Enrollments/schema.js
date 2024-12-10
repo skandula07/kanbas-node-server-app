@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 const enrollmentSchema = new mongoose.Schema(
  {
-   course: { type: mongoose.Schema.Types.ObjectId, ref: "CourseModel" },
-   user:   { type: String , ref: "UserModel"   },
+   course: String,
+   user:   String,
    grade: Number,
    letterGrade: String,
    enrollmentDate: Date,
