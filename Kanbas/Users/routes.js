@@ -142,6 +142,8 @@ app.delete("/api/users/:userId", deleteUser);
     }
     const courses = await enrollmentsDao.findCoursesForUser(uid);
     res.json(courses);
+    // console.log(courses)
+
   };
   app.get("/api/users/:uid/courses", findCoursesForUser);
  
